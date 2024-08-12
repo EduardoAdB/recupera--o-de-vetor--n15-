@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class UiManager : MonoBehaviour
 {
     #region.singleton
+    [SerializeField]
     Button[] botoes;
     [SerializeField]
     TextMeshProUGUI sequenciaTexto;
@@ -16,22 +17,32 @@ public class UiManager : MonoBehaviour
     TextMeshProUGUI acertouTexto;
     [SerializeField]
     TextMeshProUGUI errouTexto;
+
+    public static UiManager instance;
     #endregion
+
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
-        for (int i = 0; i < botoes.Length; i++)
+        
+        for (int i = 0; i < botoes.Length; i++) 
         {
             int x = i;
-            //botoes[i].onClick(GameManager.ChecarCor(x));
+            botoes[i].onClick.AddListener(() => GameManager.instance.ChecarCor(x));
+           
         }
-    }
+    } 
+    //botões não estão alterando a sequencia de cores
     public void AtualizarAcertos(int acertos)
     {
-        acertouTexto.text = acertos.ToString();
+        acertouTexto.text ="acertos: "+ acertos.ToString(); //o string não está sendo alterado
     }
     public void AtualizarErros(int erros)
     {
-        errouTexto.text = erros.ToString();
+        errouTexto.text ="erros: "+ erros.ToString(); //o string não está sendo alterado
     }
     public void LimparTexto()
     {
