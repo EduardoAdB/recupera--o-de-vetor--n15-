@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public void GerarSequencia()
     {
         corDaVez = 0;
-        sequencia = new int[Random.Range(3, nomes.Length)];
+        sequencia = new int[Random.Range(3, nomes.Length)]; //os nomes não são aleatórios, acredito que tenha erros no começo do array;
         UiManager.instance.LimparTexto();
         for (int i = 0; i < sequencia.Length; i++)
         {
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         else
         {
             erros++;
-            UiManager.instance.AtualizarErros(erros);
+            UiManager.instance.AtualizarErros(erros); 
             GerarSequencia();
         }
 
