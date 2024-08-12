@@ -32,5 +32,24 @@ public class GameManager : MonoBehaviour
             //Att pra validar os comit
         }
     }
-    
+    public void ChecarCor(int corIndex)
+    {
+        if (corIndex == sequencia[corDaVez])
+        {
+            corIndex += corDaVez;
+            if (corDaVez == sequencia.Length)
+            {
+                acertos++;
+                //UiManager.instance.AtualizarAcertos();
+                GerarSequencia();
+            }
+        }
+        else
+        {
+            erros++;
+            //UiManager.instance.AtualizarErros();
+            GerarSequencia();
+        }
+
+    }
 }
